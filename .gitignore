@@ -1,0 +1,8 @@
+# Downloaded thread data and generated content
+data/
+
+# Generated mdBook output
+book
+
+# Personal prompt file (copy from QUICK_PROMPT.template)
+QUICK_PROMPT.txt

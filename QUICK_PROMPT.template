@@ -1,0 +1,76 @@
+I need you to act as a PostgreSQL expert and technical writer to generate a high-quality blog post from a PostgreSQL mailing list thread.
+
+**Instructions:**
+
+1. **Fetch the thread data:**
+   - Run: `python3 tools/fetch_data.py --thread-id "PASTE_YOUR_THREAD_ID_HERE"`
+   - This will download the HTML, convert to Markdown, and save attachments
+
+2. **Analyze the content:**
+   - Read the converted Markdown file in `data/threads/YYYY-MM-DD/<thread-id>/thread.md`
+   - Review the original HTML if you need more context
+   - Check the `attachments/` folder for any patch files
+   - If there are multiple patch versions (v1, v2, v3, etc.), use `diff` to understand what changed between versions
+
+3. **Generate TWO versions of the technical blog post (English and Chinese):**
+
+   **Both versions should include:**
+   - **Clear title:** Based on the main topic discussed
+   - **Introduction:** Brief context and why this matters
+   - **Technical Analysis:**
+     - Key discussion points and decisions
+     - Code examples or patch highlights (if relevant)
+     - Evolution of the solution (compare patch versions if multiple exist)
+   - **Community Insights:**
+     - Important reviewer feedback
+     - Issues discovered and how they were resolved
+   - **Technical Details:**
+     - Implementation approaches
+     - Edge cases discussed
+     - Performance considerations (if any)
+   - **Current Status:** Where the patch/discussion stands
+   - **Conclusion:** Summary and implications for PostgreSQL users
+
+4. **Writing guidelines:**
+   - **English version:** Professional technical writing style, clear explanations for complex concepts
+   - **Chinese version (中文版本):**
+     - Professional technical writing in Chinese
+     - Maintain technical accuracy with proper terminology
+     - Use 中文 for explanations but keep code/SQL examples in original form
+     - Natural Chinese technical writing style (不要直译，要符合中文技术文章习惯)
+   - **Both versions:**
+     - Code blocks with proper syntax highlighting
+     - Links to relevant documentation or references
+
+5. **Save the blogs:**
+   - Determine the appropriate year and week number based on the thread date or current date
+   - Generate a descriptive filename based on the content (e.g., `pg-get-role-ddl-functions`)
+   - **Create directories if needed and save TWO files:**
+     - `src/en/{year}/{week}/{filename}.md` - English version
+     - `src/cn/{year}/{week}/{filename}.md` - Chinese version (中文版本)
+   - Update `src/SUMMARY.md` to include BOTH blog entries in their respective language sections
+   - Update both language week README files if they don't exist:
+     - `src/en/{year}/{week}/README.md`
+     - `src/cn/{year}/{week}/README.md`
+
+   - **Example SUMMARY.md format:**
+     ```markdown
+     # 🇬🇧 English
+     - [2026](./en/2026/README.md)
+       - [Week 03](./en/2026/03/README.md)
+         - [Topic Name](./en/2026/03/topic-name.md)
+
+     # 🇨🇳 中文
+     - [2026](./cn/2026/README.md)
+       - [第 03 周](./cn/2026/03/README.md)
+         - [主题名称](./cn/2026/03/topic-name.md)
+     ```
+
+**Additional Context:**
+- You have full access to all downloaded files in the thread directory
+- Use your PostgreSQL expertise to provide valuable insights
+- Focus on technical accuracy and clarity
+- Highlight what developers and DBAs should know about this discussion
+- **Year/Week determination:** Check the thread's date in metadata.txt or use the current date to determine the appropriate year and ISO week number for organizing the blog
+
+Please start by fetching the data and then generate the blog post.
